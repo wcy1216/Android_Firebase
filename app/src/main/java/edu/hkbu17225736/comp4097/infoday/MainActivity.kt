@@ -5,6 +5,7 @@ import android.view.MenuItem
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -24,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         //val appBarConfiguration = AppBarConfiguration(setOf(
         //        R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.navigation_home, R.id.navigation_dashboard,
-            R.id.navigation_notifications, R.id.mapsFragment
+            R.id.newslistFragment, R.id.eventsFragment,
+            R.id.infoFragmentNew, R.id.mapsFragment
         ))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -36,7 +37,19 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    fun buttonClick(view : View) {
-        findNavController(R.id.nav_host_fragment).navigate(R.id.action_navigation_home_to_infoFragmentNew)
+//    fun buttonClick(view : View) {
+//        findNavController(R.id.nav_host_fragment).navigate(R.id.action_navigation_home_to_infoFragmentNew)
+//    }
+
+    //MainActivity.kt
+//It is called when the app is created or resumed from another app
+override fun onResume() {
+        super.onResume()
+        //The SwitchPreferenceCompat will automatically store the preference value in a key-value dictionary.
+        if (getSharedPreferences("${packageName}_preferences", 0).getBoolean("dark_mode", false)) {
+        //switch to night mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) } else {
+        //switch to day mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) }
     }
 }
