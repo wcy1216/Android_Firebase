@@ -5,6 +5,7 @@
     <string name="title_events">Events</string>
     <string name="title_map">Map</string>
     <string name="title_info">Info</string>
+    <string name="title_bookmark">Bookmark</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

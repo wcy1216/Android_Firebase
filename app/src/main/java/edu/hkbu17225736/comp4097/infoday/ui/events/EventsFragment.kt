@@ -8,8 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import edu.hkbu17225736.comp4097.infoday.R
+import edu.hkbu17225736.comp4097.infoday.data.AppDatabase
+import edu.hkbu17225736.comp4097.infoday.data.SampleData
 import edu.hkbu17225736.comp4097.infoday.ui.events.dummy.DummyContent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * A fragment representing a list of Items.
@@ -39,7 +45,38 @@ class EventsFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = EventRecyclerViewAdapter(DummyContent.ITEMS)
+
+                val dept_id = arguments?.getString("dept_id")
+
+                if (dept_id == null) {
+                    //adapter = EventRecyclerViewAdapter(DummyContent.ITEMS)
+                    //replace this with list of Dept
+                    //if dept_id is not set, call at the beginning
+                    adapter = DeptRecyclerViewAdapter(SampleData.DEPT)
+                    // adapter = EventRecyclerViewAdapter(SampleData.EVENT) //to test Event
+                }else{
+                    //Otherwise
+//                    adapter = EventRecyclerViewAdapter(SampleData.EVENT.filter {
+//                        //if (it.deptId == dept_id) true else false   //if they are the same, return true
+//                        (it.deptId == dept_id)                        //more elegant
+//                    })
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val dao = AppDatabase.getInstance(context).eventDao()
+                        val events = dao.findEventsByDeptID(dept_id)
+                        //...
+                        //some_other_code // concurrently running here
+                        CoroutineScope(Dispatchers.Main).launch {
+                            adapter = EventRecyclerViewAdapter(events)
+                        }
+
+                    }
+
+                    //enable the back arrow on the screen
+                    (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+                }
+
+
             }
         }
         return view
