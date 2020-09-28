@@ -27,9 +27,14 @@ class NewsRecyclerViewAdapter(
         val item = values[position]
 //        holder.idView.text = item.id
 //        holder.contentView.text = item.content
-        Picasso.get().load(item.image).into(holder.newsImageView)
+//        Picasso.get().load(item.image).into(holder.newsImageView)
         holder.titleTextView.text = item.title
         holder.detaiTextlView.text = item.detail
+
+        if (item.image != "")
+            Picasso.get().load(item.image).into(holder.newsImageView)
+        else
+            holder.newsImageView.setImageDrawable(holder.itemView.context.getDrawable(R.drawable.ic_baseline_cloud_download_24))
 
     }
 

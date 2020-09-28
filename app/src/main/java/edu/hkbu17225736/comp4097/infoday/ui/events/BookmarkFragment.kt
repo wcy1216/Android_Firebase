@@ -51,7 +51,7 @@ class   BookmarkFragment : Fragment() {
                     //...
                     //some_other_code // concurrently running here
                     CoroutineScope(Dispatchers.Main).launch {
-                        adapter = BookmarkEventRecyclerViewAdapter(events)
+                        adapter = BookmarkEventRecyclerViewAdapter(events.toMutableList())
                     }
 
                 }
