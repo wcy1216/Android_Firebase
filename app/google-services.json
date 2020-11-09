@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "583494412131",
+    "firebase_url": "https://android-estate-rental.firebaseio.com",
+    "project_id": "android-estate-rental",
+    "storage_bucket": "android-estate-rental.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583494412131:android:8d1a874be16f50e0cb1556",
+        "android_client_info": {
+          "package_name": "edu.hkbu17225736.comp4097.infoday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583494412131-up6d8gsi0o7knfbgc8p616nkrdafr1fo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaxqb4gtpaKC9j4t4AygLbfQCl-en0OOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583494412131-up6d8gsi0o7knfbgc8p616nkrdafr1fo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
